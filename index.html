@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto Rojo Lab — Dirección de Arte y Visión Estratégica</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --surface-color: #141414;
+            --surface-card: #1e1e1e;
+            --primary: #e50914;
+            --primary-hover: #ff1e2a;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: #2a2a2a;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header & Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Logo SVG pulito e proporzionato */
+        .nav-logo-svg {
+            height: 42px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .btn-nav {
+            background-color: var(--primary);
+            color: white !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-nav:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 13rem 2rem 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-tag {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-muted);
+            max-width: 750px;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Manifesto */
+        .manifesto {
+            background-color: var(--surface-color);
+            padding: 7rem 2rem;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .manifesto-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .manifesto h2 {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .manifesto p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 7rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-header span {
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .service-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Lab & Brand Section */
+        .lab-section {
+            background-color: var(--surface-color);
+            padding: 7rem 2rem;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .lab-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .lab-box {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lab-box h3 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .lab-box p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 800px;
+            margin-bottom: 1.5rem;
+        }
+
+        .lab-tagline {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: 2rem;
+            display: block;
+            border-left: 3px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 7rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-box {
+            background-color: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.9rem;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .success-message {
+            display: none;
+            background: rgba(229, 9, 20, 0.1);
+            border: 1px solid var(--primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 1.5rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer .tagline {
+            color: var(--text-main);
+            font-weight: 600;
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 8rem;
+            }
+            .lab-box {
+                padding: 2rem 1.5rem;
+            }
+            .contact-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Nav -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <a href="#">
+                    <svg class="nav-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M65 10C40 10 25 25 25 50V75H45V90H75V65H90V35C90 20 80 10 65 10Z" fill="white"/>
+                        <circle cx="52" cy="42" r="18" fill="#e50914"/>
+                    </svg>
+                </a>
+                <span class="logo-text">PUNTO ROJO LAB</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#lab">Lab</a></li>
+                <li><a href="#contacto" class="btn-nav">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-tag">Creatividad con Intención</div>
+        <h1 class="hero-title">No soy un mago. Soy humano.</h1>
+        <p class="hero-subtitle">Y tengo algo de inteligencia artificial. Pero sobre todo, soy real. Vengo de la comunicación y el marketing, con una larga trayectoria en moda y belleza. He creado marcas, logos y webs que no buscan la perfección vacía: buscan funcionar.</p>
+        <div class="hero-buttons">
+            <a href="#contacto" class="btn-primary">Hablemos de tu proyecto <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#lab" class="btn-outline">Ver Laboratorio</a>
+        </div>
+    </section>
+
+    <!-- Manifesto -->
+    <section class="manifesto">
+        <div class="manifesto-content">
+            <h2>Un nuevo capítulo en Tenerife</h2>
+            <p>Me he trasladado a Tenerife para abrir una nueva etapa. Y lo hago aportando lo que mejor define mi recorrido: un trasfondo de diseño y sensibilidad estética, enfocado en dar alma, claridad y visión a cada proyecto.</p>
+            <p style="color: var(--text-main); font-weight: 500;">No te vendo milagros. Te ofrezco una mirada afilada, sensibilidad y estrategia para dar forma a tu próxima etapa.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicios">
+        <div class="section-header">
+            <span>Lo que hacemos</span>
+            <h2>Servicios directos y sin rodeos</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-number">01</span>
+                <h3>Dirección de Arte & Identidad Visual</h3>
+                <p>No se trata solo de hacer un logotipo bonito. Aportamos criterio, atención al detalle y sensibilidad estética para construir una identidad coherente que hable por ti y destaque en el mercado.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-number">02</span>
+                <h3>Arquitectura de Sitios Web</h3>
+                <p>Sitios limpios, rápidos, directos al grano y orientados a la conversión. Nada de páginas kilométricas llenas de texto: arquitectura digital diseñada para que el cliente entienda quién eres en tres segundos.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-number">03</span>
+                <h3>Estrategia & Contenido Visual</h3>
+                <p>Un enfoque humano y autoral para la comunicación digital. Estructuramos narrativas visuales y contenido con criterio, usando las herramientas actuales de forma inteligente y con una visión clara de marca.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lab & Brand Section -->
+    <section class="lab-section" id="lab">
+        <div class="lab-container">
+            <div class="lab-box">
+                <span style="color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; display: block; margin-bottom: 1rem;">Laboratorio Creativo</span>
+                <h3>Punto Rojo: Más allá de la agencia, un brand</h3>
+                <p>Creemos en los hechos.</p>
+                <p><strong>Punto Rojo</strong> no es solo un estudio de dirección de arte: es nuestro propio banco de pruebas. Minimalista, contemporáneo, limpio. La esencia del estilo plasmada en una línea de camisetas y accesorios.</p>
+                <span class="lab-tagline">Un punto rojo de distinción. Un punto y aparte en el estilo y la comunicación. La mejor forma de demostrar lo que sabemos hacer es haciéndolo para nosotros mismos.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="section-header" style="text-align: center; margin-bottom: 0;">
+            <span>Contacto</span>
+            <h2>Hablemos de tu proyecto</h2>
+        </div>
+        <div class="contact-box">
+            <p style="color: var(--text-muted); text-align: center;">Cuéntanos tu idea y demos forma a tu próxima gran etapa.</p>
+            <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Tu Nombre</label>
+                    <input type="text" id="name" required placeholder="Ej. Carlos Pérez">
+                </div>
+                <div class="form-group">
+                    <label for="email">Tu Correo Electrónico</label>
+                    <input type="email" id="email" required placeholder="carlos@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Cuéntanos sobre tu proyecto</label>
+                    <textarea id="message" required placeholder="Describe brevemente qué necesitas..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; cursor: pointer; border: none;">Enviar Mensaje</button>
+            </form>
+            <div class="success-message" id="successMessage">
+                ¡Gracias! Mensaje enviado con éxito. Nos pondremos en contacto pronto.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Punto Rojo Lab. Todos los derechos reservados.</p>
+        <p class="tagline">Punto y aparte.</p>
+    </footer>
+
+    <!-- Script form -->
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('contactForm');
+            const successMsg = document.getElementById('successMessage');
+
+            form.style.display = 'none';
+            successMsg.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
